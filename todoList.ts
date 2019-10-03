@@ -50,6 +50,9 @@ let mainProcess = () => {
         fs.writeFileSync('./listTasks.txt', listTasks)
       }
     }
+  }else{
+    console.log('Unsupported argument')
+    console.log(printUsage);
   }
 }
 mainProcess();

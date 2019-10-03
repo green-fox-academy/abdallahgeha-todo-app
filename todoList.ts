@@ -27,7 +27,11 @@ let mainProcess = () => {
     }
 
   } else if (args[2] == '-a') {
+    if (!args[3]){
+      console.log('Unable to add: no task provided')
+    }else{
     fs.appendFileSync('./listTasks.txt', ('\r\n' + args[3]))
+    }
   } else if (args[2] == '-r') {
 
     let indexDelet = parseInt(args[3]) - 1

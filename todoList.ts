@@ -33,14 +33,22 @@ let mainProcess = () => {
     fs.appendFileSync('./listTasks.txt', ('\r\n' + args[3]))
     }
   } else if (args[2] == '-r') {
-
-    let indexDelet = parseInt(args[3]) - 1
     let listNumberedTasks = listTasks.split('\r\n')
-    if (listNumberedTasks.length >= 2) {
-      console.log('Deleting [ ' + listNumberedTasks[indexDelet] + " ]")
-      listNumberedTasks.splice(indexDelet, 1)
-      listTasks = listNumberedTasks.join('\r\n')
-      fs.writeFileSync('./listTasks.txt', listTasks)
+    let indexDelet = parseInt(args[3]) - 1
+    //console.log(listNumberedTasks.length)
+    if (!args[3]){
+      console.log('Unable to remove: no index provided')
+    }else if (indexDelet > listNumberedTasks.length){
+      console.log('Unable to remove: index is out of bound')
+    }else if (!indexDelet ){
+      console.log('Unable to remove: index is not a number')
+    }else{
+      if (listNumberedTasks.length >= 2) {
+        console.log('Deleting [ ' + listNumberedTasks[indexDelet] + " ]")
+        listNumberedTasks.splice(indexDelet, 1)
+        listTasks = listNumberedTasks.join('\r\n')
+        fs.writeFileSync('./listTasks.txt', listTasks)
+      }
     }
   }
 }

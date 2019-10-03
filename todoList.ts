@@ -15,19 +15,29 @@ let mainProcess = () => {
 
   if (args.length == 2) {
     console.log(printUsage);
-  } else if (args[2] == '-l'){
+  } else if (args[2] == '-l') {
     console.log('$ todo -l \r\n')
-    if(listTasks == ''){
+    if (listTasks == '') {
       console.log('No todos for today! :)')
-    }else {
+    } else {
       let listNumberedTasks = listTasks.split('\r\n')
-      for (let i : number = 1 ; i<=listNumberedTasks.length ; i++){
-        console.log(i+' - '+listNumberedTasks[i-1])
+      for (let i: number = 1; i <= listNumberedTasks.length; i++) {
+        console.log(i + ' - ' + listNumberedTasks[i - 1])
       }
     }
-    
-  } else if (args[2] == '-a'){
-    fs.appendFileSync('./listTasks.txt',('\r\n' + args[3]))
+
+  } else if (args[2] == '-a') {
+    fs.appendFileSync('./listTasks.txt', ('\r\n' + args[3]))
+  } else if (args[2] == '-r') {
+
+    let indexDelet = parseInt(args[3]) - 1
+    let listNumberedTasks = listTasks.split('\r\n')
+    if (listNumberedTasks.length >= 2) {
+      console.log('Deleting [ ' + listNumberedTasks[indexDelet] + " ]")
+      listNumberedTasks.splice(indexDelet, 1)
+      listTasks = listNumberedTasks.join('\r\n')
+      fs.writeFileSync('./listTasks.txt', listTasks)
+    }
   }
 }
 mainProcess();

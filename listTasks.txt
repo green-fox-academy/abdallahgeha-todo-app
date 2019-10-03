@@ -1,4 +1,4 @@
-Walk the dog
-Buy milk
-Do homework
-Feed a monkey
+Walk the dog,u
+Buy milk,d
+Do homework,u
+Feed a monkey,u

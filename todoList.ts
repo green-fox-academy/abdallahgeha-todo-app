@@ -21,9 +21,8 @@ let mainProcess = () => {
       console.log('No todos for today! :)')
     } else {
       let listNumberedTasks = listTasks.split('\r\n')
-      for (let i: number = 1; i <= listNumberedTasks.length; i++) {
-        console.log(i + ' - ' + listNumberedTasks[i - 1])
-      }
+      let parts = listNumberedTasks.map(e => e.split(','))
+      parts.forEach((e,i) => console.log((i+1) , ' - ' + e[0]))
     }
 
   } else if (args[2] == '-a') {
@@ -50,6 +49,20 @@ let mainProcess = () => {
         fs.writeFileSync('./listTasks.txt', listTasks)
       }
     }
+  }else if (args[2] == '-c') {
+    let indexCheck = parseInt(args[3]) - 1
+    let listNumberedTasks = listTasks.split('\r\n')
+    let parts = listNumberedTasks.map(e => e.split(','))
+    parts[indexCheck][1] = 'd';
+    let newParts = parts.map(e => e.join(','))
+    let newLines =newParts.join('\r\n')
+    fs.writeFileSync('./listTasks.txt', newLines)
+
+    console.log(newLines)
+    // let newParts = parts.join(',')
+    // let newListNumbereredTasks
+    // listNumberedTasks
+    // parts.forEach((e,i) => console.log((i+1) , ' - ' + e[0]))
   }else{
     console.log('Unsupported argument')
     console.log(printUsage);

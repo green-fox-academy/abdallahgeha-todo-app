@@ -17,11 +17,15 @@ let mainProcess = () => {
     console.log(printUsage);
   } else if (args[2] == '-l'){
     console.log('$ todo -l \r\n')
-
-    let listNumberedTasks = listTasks.split('\r\n')
-    for (let i : number = 1 ; i<=listNumberedTasks.length ; i++){
-      console.log(i+' - '+listNumberedTasks[i-1])
+    if(listTasks == ''){
+      console.log('No todos for today! :)')
+    }else{
+      let listNumberedTasks = listTasks.split('\r\n')
+      for (let i : number = 1 ; i<=listNumberedTasks.length ; i++){
+        console.log(i+' - '+listNumberedTasks[i-1])
+      }
     }
+    
   }/* else {
     console.log('this is the error handling');
   }*/

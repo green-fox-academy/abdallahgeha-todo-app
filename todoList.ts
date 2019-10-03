@@ -19,15 +19,15 @@ let mainProcess = () => {
     console.log('$ todo -l \r\n')
     if(listTasks == ''){
       console.log('No todos for today! :)')
-    }else{
+    }else {
       let listNumberedTasks = listTasks.split('\r\n')
       for (let i : number = 1 ; i<=listNumberedTasks.length ; i++){
         console.log(i+' - '+listNumberedTasks[i-1])
       }
     }
     
-  }/* else {
-    console.log('this is the error handling');
-  }*/
+  } else if (args[2] == '-a'){
+    fs.appendFileSync('./listTasks.txt',('\r\n' + args[3]))
+  }
 }
 mainProcess();
